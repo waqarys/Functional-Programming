@@ -27,10 +27,16 @@ public class Example {
 				FunctionOverTime.line(5.1,  0.15);
 		
 		
-		final FunctionOverTime profit = 
+		/*final FunctionOverTime profit = 
 				(time) -> sales.valueAt(time) - 
 				(fixedCosts.valueAt(time) +
-						incrementalCosts.valueAt(time));
+						incrementalCosts.valueAt(time));*/
+		
+		final FunctionOverTime profit = 
+				FunctionOverTime.combinationOf3(
+						sales, incrementalCosts, fixedCosts,
+						(s, ic, fc) -> s-ic-fc
+						);
 		
 		double total = 0.0;
 		for(int i=0; i<=12; i++){
